@@ -1,8 +1,26 @@
-import {bootstrap}    from 'angular2/platform/browser';
-import {AppComponent} from './app.component';
-import {AppService} from './app.service';
-import {ROUTER_PROVIDERS, ROUTER_DIRECTIVES} from 'angular2/router';
+import 	{bootstrap}    from 'angular2/platform/browser';
+import 	{AppComponent} from './app.component';
+import 	{HTTP_PROVIDERS} from 'angular2/http';
+import 	{AppService} from './app.service';
+import 	{ServiceConnector} from './app.commonLib.service';
+
+import 	{
+			ROUTER_PROVIDERS, 
+			ROUTER_DIRECTIVES,
+			LocationStrategy,
+	        HashLocationStrategy
+    	} from 'angular2/router';
+
+import {provide}           from 'angular2/core';
 
 
-bootstrap(AppComponent,[AppService, ROUTER_PROVIDERS, ROUTER_DIRECTIVES])
+bootstrap(AppComponent,
+		[	
+			HTTP_PROVIDERS, 
+			ROUTER_PROVIDERS, 
+			AppService, 
+			ServiceConnector,
+			provide(LocationStrategy,
+     		{useClass: HashLocationStrategy}) 
+     	])
 	.catch(console.error);

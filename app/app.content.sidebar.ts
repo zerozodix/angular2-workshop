@@ -2,6 +2,6 @@ import {Component} from 'angular2/core';
 
 @Component({
     selector: 'my-SideBar',
-    template: 'view-sidebar'
+    template: `i'm side bar`
 })
 export class SideBar { }

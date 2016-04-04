@@ -1,8 +1,11 @@
 import {Injectable} from 'angular2/core';
-//import {Http} from 'angular2/http';
+import {ServiceConnector} from './app.commonLib.service';
+import {Http} from 'angular2/http';
 
 @Injectable()
 export class AppService {
+
+    private url = "https://gank.io/api/data/%E7%A6%8F%E5%88%A9/50/1";
 
     private mockData = [
         {
@@ -21,14 +24,18 @@ export class AppService {
             name: 'Pop'
         }];
 
-  	constructor() {
+    constructor(private serviceConnector:ServiceConnector) {
     }
 
     getPersonList() {
-    	return this.mockData;
+    	return Promise.resolve(this.mockData);
+        // Waiting Service from POP
+        // return this.serviceConnector.GET(this.url);
     }
 
     getPersonById(id){
         return this.mockData[id];
+        // Waiting Service from POP
+        // return this.serviceConnector.GET(this.url , id);
     }
 }

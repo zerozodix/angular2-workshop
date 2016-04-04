@@ -5,35 +5,27 @@ import {ContentView} from './app.content.view';
 import {FooterView} from './app.footer';
 import {ContentDetail} from './app.content.detail';
 
+
 @Component({
     selector: 'my-app',
-    template: `<my-header></my-header>
-    		   <router-outlet></router-outlet>
-    		   <my-footerview></my-footerview>`,
-    directives: [ROUTER_DIRECTIVES, ContentHeader,ContentView, FooterView]
+    template: `
+    			<div class="mdl-layout mdl-js-layout">
+    				<my-header class="mdl-layout__header mdl-layout__header--transparent"></my-header>
+    				<main class="mdl-layout__content">
+					   	<div class="page-content">
+    						<router-outlet></router-outlet>
+    					</div> 		
+					</main>
+
+    		   		<my-footerview class="mdl-mini-footer" style="padding: 10px;"></my-footerview>
+    		   	</div>`,
+    directives: [ROUTER_DIRECTIVES, ContentHeader, ContentView, FooterView, ContentDetail],
+
 })
 
 @RouteConfig([
-  {path:'/',          	  name: 'CrisisCenter', component: ContentView},
-  {path:'/detail/:id',        name: 'Heroes',       component: ContentDetail}
+  	{ path: '/',       		name: 'ContentView', 	component: ContentView   , useAsDefault: true },
+  	{ path: '/detail/:id', 	name: 'Detail',       	component: ContentDetail }
 ])
-
-// import {Component} from 'angular2/core';
-// import {RouteConfig, RouterOutlet, ROUTER_DIRECTIVES} from 'angular2/router';
-// import {ContentHeader}   from './app.header';
-// import {FooterView}     from './app.footer';
-// @Component({
-//   selector: 'my-app',
-//   template: `
-//     <h1>Component Router</h1>
-//     <router-outlet></router-outlet>
-//   `,
-//   directives: [RouterOutlet, ROUTER_DIRECTIVES]
-// })
-// @RouteConfig([
-//   {path:'/', name: 'CrisisCenter', component: ContentHeader},
-//   {path:'/heroes',        name: 'Heroes',       component: FooterView}
-// ])
-
 
 export class AppComponent { }

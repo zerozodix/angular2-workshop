@@ -19,7 +19,9 @@ export class ContentListView {
 	}
 
 	ngOnInit() {
-		this.personList = this.appService.getPersonList();
+		this.appService.getPersonList().then((personData) => {
+			this.personList = personData
+		});
 	}
 
 	showDetail(id:String){
